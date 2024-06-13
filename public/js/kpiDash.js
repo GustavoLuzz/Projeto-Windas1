@@ -106,14 +106,50 @@ function validarSessao() {
       temp <= limitesTemperatura.quente
     ) {
       classe_alerta = "umidade-ideal container card";
+      document.getElementById(`titulo_alerta_${idQuarto}`).innerHTML = '';
       document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
         "Sem alertas";
       document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
         "Condições adequadas ✅";
-    } else {
+    } else if (tempFora >= limitesTemperatura.quente && temp <= limitesTemperatura.frio && prox == 0) {
       classe_alerta = "alerta container card";
       document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
-        "Abra a janela";
+        "Fechar janela e ligar ar-condicionado";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else if (tempFora >= limitesTemperatura.quente && temp <= limitesTemperatura.frio && prox == 1) {
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Manter janela fechada e desligar ar-condicionado";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else if (tempFora >= limitesTemperatura.quente && temp >= limitesTemperatura.quente && prox == 0) {
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Fechar janela e ligar ar-condicionado";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else if (tempFora >= limitesTemperatura.quente && temp >= limitesTemperatura.quente && prox == 1) {
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Fechar janela e ligar ar-condicionado";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else if (tempFora <= limitesTemperatura.frio && temp >= limitesTemperatura.quente && prox == 0) {
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Fechar janela e desligar ar-condicionado";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else if (tempFora <= limitesTemperatura.frio && temp >= limitesTemperatura.quente && prox == 1) {
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Desligar ar-condicionado";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else if (tempFora <= limitesTemperatura.frio && temp <= limitesTemperatura.frio && prox == 0) {
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Fechar janela e desligar ar-condicionado (caso ligado)";
+      document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
+        "Condições inadequadas 🚨";
+    } else{
+      document.getElementById(`alerta_quarto_${idQuarto}`).innerHTML =
+        "Manter janela fechada e desligar ar-condicionado (caso ligado)";
       document.getElementById(`descricao_alerta_quarto_${idQuarto}`).innerHTML =
         "Condições inadequadas 🚨";
     }
